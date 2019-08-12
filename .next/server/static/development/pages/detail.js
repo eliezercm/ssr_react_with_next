@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -757,10 +757,10 @@ module.exports = __webpack_require__(/*! ./dist/client/link */ "./node_modules/n
 
 /***/ }),
 
-/***/ "./pages/users.js":
-/*!************************!*\
-  !*** ./pages/users.js ***!
-  \************************/
+/***/ "./pages/detail.js":
+/*!*************************!*\
+  !*** ./pages/detail.js ***!
+  \*************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -772,38 +772,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/head */ "next/head");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _src_hocs_withAnalytics__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../src/hocs/withAnalytics */ "./src/hocs/withAnalytics.js");
+/* harmony import */ var _src_hocs_withAnalytics__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../src/hocs/withAnalytics */ "./src/hocs/withAnalytics.js");
 
 
 
 
 
-
-const Users = ({
-  users
-}) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_3___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("title", null, "Users")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, users.map(user => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-  key: user.id
-}, user.login, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-  href: `/users/${user.login}`
-}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Acessar perfil"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-  href: "/"
+const Detail = ({
+  user
+}) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, user.login), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+  src: user.avatar_url,
+  width: "200"
+}), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+  href: "/users"
 }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Back")));
-/* if it is the first page acessed by user,
-   the ajax request will be made by server,
-   otherwise will be made by client
-*/
 
-
-Users.getInitialProps = async () => {
-  const response = await axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("https://api.github.com/orgs/rails/members");
+Detail.getInitialProps = async ({
+  query
+}) => {
+  const response = await axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(`https://api.github.com/users/${query.user}`);
   return {
-    users: response.data
+    user: response.data
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(_src_hocs_withAnalytics__WEBPACK_IMPORTED_MODULE_4__["default"])()(Users));
+/* harmony default export */ __webpack_exports__["default"] = (Object(_src_hocs_withAnalytics__WEBPACK_IMPORTED_MODULE_3__["default"])()(Detail));
 
 /***/ }),
 
@@ -844,14 +837,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 4:
-/*!******************************!*\
-  !*** multi ./pages/users.js ***!
-  \******************************/
+/***/ 5:
+/*!*******************************!*\
+  !*** multi ./pages/detail.js ***!
+  \*******************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/eliezer/Desktop/std/next_ssr/pages/users.js */"./pages/users.js");
+module.exports = __webpack_require__(/*! /home/eliezer/Desktop/std/next_ssr/pages/detail.js */"./pages/detail.js");
 
 
 /***/ }),
@@ -955,17 +948,6 @@ module.exports = require("next-server/dist/lib/utils");
 
 /***/ }),
 
-/***/ "next/head":
-/*!****************************!*\
-  !*** external "next/head" ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("next/head");
-
-/***/ }),
-
 /***/ "prop-types":
 /*!*****************************!*\
   !*** external "prop-types" ***!
@@ -1022,4 +1004,4 @@ module.exports = require("url");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=users.js.map
+//# sourceMappingURL=detail.js.map
